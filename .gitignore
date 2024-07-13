@@ -1,0 +1,7 @@
+anomalib/
+datasets/
+pre_trained/
+results/
+*.zip
+croped_data/
+yolov9/
