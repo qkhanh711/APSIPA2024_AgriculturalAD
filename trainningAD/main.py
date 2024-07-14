@@ -21,6 +21,7 @@ parser.add_argument("--task", type=str, default="SEGMENTATION", help="Task type"
 parser.add_argument("--img_size", type=int, default=256, help="Image size")
 parser.add_argument("--batch_size", type=int, default=32, help="Batch size")
 parser.add_argument("--num_workers", type=int, default=8, help="Number of workers")
+parser.add_argument("--test_id", type=int, default=0000, help="Test id")
 args = parser.parse_args()
 
 print("Arguments: ", args)
@@ -87,7 +88,7 @@ engine.fit(datamodule=datamodule, model=model)
 
 engine.test(datamodule=datamodule, model=model)
 
-inference_dataset = PredictDataset(path=args.root + f"/{args.cls}/test/tear/000.png")
+inference_dataset = PredictDataset(path=args.root + f"/{args.cls}/test/tear/{args.test_id}.png")
 inference_dataloader = DataLoader(dataset=inference_dataset, num_workers=47)
 
 predictions = engine.predict(model=model, dataloaders=inference_dataloader)[0]
