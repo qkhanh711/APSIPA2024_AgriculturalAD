@@ -96,5 +96,5 @@ os.makedirs("results_metrics", exist_ok=True)
 results = results[0]
 
 import json
-with open(f"results/{args.cls}_{args.model}.json", "w") as f:
+with open(f"results_metrics/{args.cls}_{args.model}.json", "w") as f:
     json.dump(results, f)

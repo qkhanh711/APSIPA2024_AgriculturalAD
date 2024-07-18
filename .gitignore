@@ -7,3 +7,4 @@ croped_data/
 yolov9/
 data_for_YOLOv9/
 train_test_splited_data/
+__pycache__/
