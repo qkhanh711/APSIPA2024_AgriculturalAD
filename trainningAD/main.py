@@ -95,8 +95,8 @@ predictions = engine.predict(model=model, dataloaders=inference_dataloader)[0]
 
 print(
     f'Image Shape: {predictions["image"].shape},\n'
-    'Anomaly Map Shape: {predictions["anomaly_maps"].shape}, \n'
-    'Predicted Mask Shape: {predictions["pred_masks"].shape}',
+    f'Anomaly Map Shape: {predictions["anomaly_maps"].shape}, \n'
+    f'Predicted Mask Shape: {predictions["pred_masks"].shape}',
 )
 
 image_path = predictions["image_path"][0]
