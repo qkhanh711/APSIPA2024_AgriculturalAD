@@ -4,7 +4,7 @@ python -c "import torch; torch.cuda.empty_cache()"
 
 export CUDA_LAUNCH_BLOCKING=1
  # Draem
- python main.py --cls bean --model draem --root "../../../patchcore-inspection/mvtec_anomaly_detection" --batch_size 32 --img_size 128
+ python main.py --cls bean --model draem --root "../../../patchcore-inspection/mvtec_anomaly_detection" --batch_size 32 --img_size 128 
 
  export CUDA_VISIBLE_DEVICES=1
 

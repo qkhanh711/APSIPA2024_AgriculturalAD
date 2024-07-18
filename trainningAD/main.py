@@ -22,6 +22,7 @@ parser.add_argument("--img_size", type=int, default=256, help="Image size")
 parser.add_argument("--batch_size", type=int, default=32, help="Batch size")
 parser.add_argument("--num_workers", type=int, default=8, help="Number of workers")
 parser.add_argument("--test_id", type=int, default=0000, help="Test id")
+parser.add_argument("--f", type=float, default=0.75, help="IoU score threshold")
 args = parser.parse_args()
 
 print("Arguments: ", args)
@@ -96,5 +97,5 @@ os.makedirs("results_metrics", exist_ok=True)
 results = results[0]
 
 import json
-with open(f"results_metrics/{args.cls}_{args.model}.json", "w") as f:
+with open(f"results_metrics/{args.cls}_{args.model}_{args.f}.json", "w") as f:
     json.dump(results, f)
