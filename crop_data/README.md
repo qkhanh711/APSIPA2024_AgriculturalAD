@@ -1,4 +1,0 @@
-# REFERENCES
-- https://github.com/WongKinYiu/yolov9
-
-

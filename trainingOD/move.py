@@ -30,7 +30,7 @@ for folder in folders:
         list_images(folder, cls[1], i)
 
 f = args.f
-
+print(f)
 good_train_images = list_images(folders[0], cls[0], f)
 tear_train_images = list_images(folders[0], cls[1], f)
 good_test_images = list_images(folders[1], cls[0], f)
