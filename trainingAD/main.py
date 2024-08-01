@@ -21,12 +21,13 @@ parser.add_argument("--task", type=str, default="SEGMENTATION", help="Task type"
 parser.add_argument("--img_size", type=int, default=256, help="Image size")
 parser.add_argument("--batch_size", type=int, default=32, help="Batch size")
 parser.add_argument("--num_workers", type=int, default=8, help="Number of workers")
-parser.add_argument("--test_id", type=int, default=0000, help="Test id")
-parser.add_argument("--f", type=float, default=0.75, help="IoU score threshold")
+parser.add_argument("--test_id", type=str, default="0000", help="Test id")
+parser.add_argument("--f", type=float, default=0, help="IoU score threshold")
 args = parser.parse_args()
 
 print("Arguments: ", args)
 
+print(args.root + f"/{args.cls}/test/tear/{args.test_id}.png")
 if args.task.upper() == "SEGMENTATION":
     task = TaskType.SEGMENTATION
 elif args.task.upper() == "CLASSIFICATION":
@@ -89,12 +90,19 @@ engine.fit(datamodule=datamodule, model=model)
 
 results = engine.test(datamodule=datamodule, model=model)
 
+import time
+start = time.time()
+inference_dataset = PredictDataset(path=args.root + f"/{args.cls}/test/tear/{args.test_id}.png")
+inference_loader = DataLoader(inference_dataset, batch_size=1, num_workers=args.num_workers)
+end = time.time()
 
+print(f"Time taken to load the image: {end-start}")
 
 import os
 os.makedirs("results_metrics", exist_ok=True)
 
 results = results[0]
+results["inference_time"] = end-start
 
 import json
 with open(f"results_metrics/{args.cls}_{args.model}_{args.f}.json", "w") as f:
